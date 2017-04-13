@@ -1,2 +1,3 @@
-Machine Learning assignments by
-@Kirega and @Rapando
+#Machine Learning assignments by
+@ Kirega
+@ Rapando
