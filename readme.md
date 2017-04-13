@@ -1,2 +1,3 @@
-Machine Learning assignments by
-@Kirega and @Rapando
+# Machine Learning Assignments
+
+> Class assignments for ###CSC323 - 2017
