@@ -1,1 +1,1 @@
-kirega
+Perceptron implementation in Python 3.5
