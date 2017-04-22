@@ -1,6 +1,6 @@
 # Machine Learning Assignments
 
-### KNN - Tested with all the three files provided
+### KNN - Tested with all the three files provided in the __files__ folder
 
 > Class KNN Methods
 
@@ -27,6 +27,9 @@
         uses the sorted data array to find the sample's nearest neighbors by choosing half of the data elements with the least distance from the given sample
         Returns the state of the sample.
 
+> KMC
+
+> Perceptron
 
 > Kirega Joseph | Adrian Wanderi | Rapando C Samson
 
