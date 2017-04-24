@@ -1,3 +1,4 @@
+import math
 from os import listdir
 from os.path import isfile, join
 from pprint import pprint
@@ -19,7 +20,7 @@ class Perceptron():
         print("_" * 100)
 
         self.data=self.train_set=[]
-        self.weights=[0]*13
+        self.weights=[0]*14
         self.learning_rate=1
         self.threshold= 1
         self.folder = "files/"
@@ -54,9 +55,11 @@ class Perceptron():
 
         if len(self.data[-1]) == 1:
             del self.data[-1]
-        # convert the last element into an integer value
+        # convert the last element into an integer value and introduce the bias in the inputs
         for last in self.data:
-            last[-1] = int(last[-1])
+            l=last.pop()
+            last.append(1)
+            last.append(int(l))
         pprint(self.data)
     #function to calculate the dot product of the input and weight
     def dot_product(self,input_vector, weight):
@@ -78,18 +81,18 @@ while (True):
     error_count = 0
     for input_vector in p.data:
         print(p.weights)
-        result = p.dot_product(input_vector[:13], p.weights)
-        if result > p.threshold:
+        result = p.dot_product(input_vector[:14], p.weights)
+        if result >  p.threshold:
             result= 2
         else:
             result=1
-
         error = input_vector[-1] - result
+        print("Obtained error is ",error)
         if error != 0:
             error_count += 1
-            p.learning(input_vector[:13],error)
+            p.learning(input_vector[:14],error)
     iteration+=1
-    if error_count == 0:
+    if error_count == 0 or iteration>1:
         break
-
-print("The optimum weights learned are",p.weights)
+print('-' * 100)
+print("\n The optimum weights learned are",p.weights)
