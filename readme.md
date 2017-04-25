@@ -2,7 +2,7 @@
 
 ### KNN - Tested with all the three files provided in the __files__ folder
 
-> Class KNN Methods
+> Class KNN Methods (Python 3)
 
     init
         Lists the available files for reading
@@ -30,6 +30,7 @@
 > KMC
 
 > Perceptron
+
 
 > Kirega Joseph | Adrian Wanderi | Rapando C Samson
 

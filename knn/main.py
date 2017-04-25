@@ -1,5 +1,3 @@
-
-
 import math
 from os import listdir
 from os.path import isfile, join
@@ -7,7 +5,7 @@ from os.path import isfile, join
 class KNN():
 	"this is to demonstrate the use of KNN"
 	def __init__(self):
-		print """
+		print("""
 ___________________________________________
 
 			KNN - CSC 323 
@@ -16,7 +14,7 @@ ___________________________________________
 			Adrian Wanderi
 ___________________________________________
 
-		"""
+		""")
 		
 		self.data, self.sample, self.states = [],[], []
 		self.no_samples, self.attributes, self.high_state, self.low_state =  0, 0, 0, 0
@@ -24,21 +22,22 @@ ___________________________________________
 
 		self.folder = "../files/"
 
-		print "LIST OF FILES AVAILABLE\n"
+		print("LIST OF FILES AVAILABLE\n")
+		
 		self.files = [f for f in listdir(self.folder) if isfile(join(self.folder, f))]
 		x = 1
 		for f in self.files:
-			print x, f
+			print(x, f)
 			x += 1
-		print
+		print()
 
 		self.load_data()
 		
 
 	def load_data(self):
-		chosen = int(raw_input("Choose the data file to load : ", ))
+		chosen = int(input("Choose the data file to load : ", ))
 		chosen_file = self.files[chosen - 1]
-		print "You have chosen ", chosen_file, "...\n"
+		print("You have chosen ", chosen_file, "...\n")
 
 		#load the data to the self.data variable
 		with open(self.folder + chosen_file, "r") as f:
@@ -52,7 +51,7 @@ ___________________________________________
 						one_sample.append(x)
 				self.data.append(one_sample)
 
-		print "The data has been loaded..."
+		print("The data has been loaded...")
 
 		if len(self.data[-1]) == 1:
 			del self.data[-1]
@@ -66,10 +65,10 @@ ___________________________________________
 		self.high_state = max(self.states)
 		self.low_state = min(self.states)
 
-		print "The data has ",self.no_samples, "samples and has ", self.attributes, " attributes."
-		print "The Low State is ", self.low_state, " and the high state is ",self.high_state
+		print("The data has ",self.no_samples, "samples and has ", self.attributes, " attributes.")
+		print("The Low State is ", self.low_state, " and the high state is ",self.high_state)
 
-		print "___________________________________________"
+		print("___________________________________________")
 
 
 	def validate_data(self):
@@ -89,11 +88,11 @@ ___________________________________________
 	def load_sample(self):
 
 		for i in range(self.attributes):
-			print "Enter Attribute ", i+1, ": "
-			x = raw_input()
+			print("Enter Attribute ", i+1, ": ")
+			x = input()
 			self.sample.append(float(x))
 
-		print
+		print()
 
 	def get_differences(self):
 		for item in self.data:
@@ -104,7 +103,7 @@ ___________________________________________
 			
 		self.data.sort(key=lambda x:x[-1])
 
-		print "The Differences have been calculated and the data sorted\n"
+		print("The Differences have been calculated and the data sorted\n")
 
 	def cluster(self):
 		length = len(self.data)
@@ -117,19 +116,19 @@ ___________________________________________
 			else:
 				no = y
 
-		print "Using the first ", no, " elements to cluster"
+		print("Using the first ", no, " elements to cluster")
 
 		total = 0
 		for i in range(no):
 			total += self.data[i][-2]
 
 		required_half = float (self.high_state * no) / float(2)
-		print "the total is ", total, " and the required half is ", required_half
+		print("the total is ", total, " and the required half is ", required_half)
 
 		if total < required_half:
-			print "The state of the sample is ", self.low_state
+			print("The state of the sample is ", self.low_state)
 		else:
-			print "The state of the sample is ", self.high_state
+			print("The state of the sample is ", self.high_state)
 		
 
 
@@ -138,12 +137,12 @@ ___________________________________________
 	
 knn = KNN()
 if knn.validate_data():
-	print "\nThe data is valid. Continue\n"
+	print("\nThe data is valid. Continue\n")
 	knn.load_sample()
 	knn.get_differences()
 	knn.cluster()
 
 else:
-	print "\nThe data has an error, exiting...\n"
+	print("\nThe data has an error, exiting...\n")
 
-print "___________________________________________"
+print("___________________________________________")
