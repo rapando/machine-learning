@@ -63,47 +63,24 @@ class Adaline():
             l = last.pop()
             last.append(1)
             last.append(int(l))
-        print("The data has been prepared for the operations...")
-        pprint(self.data)
-
     # function to calculate the dot product of the input and weight
     def dot_product(self, input_vector, weight):
         return sum(round(values * weight,2) for values, weight in zip(input_vector, weight))
-
-    # function to set up training sets of the form ([input-vector],[desired_output]) eg.([2,1,2,2],[1])
-    def training_set(self):
-        pass
-
     # function finds the adjusted weights
     def learning(self, input_vector, error):
         for index, value in enumerate(input_vector):
             self.weights[index] = round(self.weights[index] + (self.learning_rate * error * value),2)
-
-    def delta_rule(self,input_vector,weight):
-        errors=0
-        for values, weight in zip(input_vector[:self.len_of_vector], weight):
-            errors+=round(input_vector[-1]-(values*weight),2)
-        pprint(errors)
-        return errors
-        # return sum(input_vector[-1]-(values * weight) for values,weight in zip(input_vector[:self.len_of_vector],weight))
     # the function that combines all the functions into the perceptron
     def adaline(self):
         while (True):
             print('_' * 150)
-            error_count = 0
             for input_vector in self.data:
                 print(self.weights)
-                result = self.dot_product(input_vector[:self.len_of_vector], self.weights)
-                if result > self.threshold:
-                    result = 2
-                else:
-                    result = 1
+                result = (self.dot_product(input_vector[:self.len_of_vector], self.weights)) % 100
                 error = input_vector[-1] - result
                 if error != 0:
-                    error_count += 1
-                    errors=self.delta_rule(input_vector,self.weights)
-                    self.learning(input_vector[:self.len_of_vector], errors)
-            if error_count == 0 or self.iterations > 2:
+                    self.learning(input_vector[:self.len_of_vector], error)
+            if self.iterations > 10:
                 break
             print('_' * 150)
             print("the number of iterations performed")
